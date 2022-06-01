@@ -1,4 +1,4 @@
-# StudentExam
+# Project with Student and User Table for Exam
 In development
 <br/>
 Last Update 15.05.2022 /
