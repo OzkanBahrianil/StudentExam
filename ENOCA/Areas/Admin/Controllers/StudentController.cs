@@ -174,7 +174,7 @@ namespace ENOCA.Areas.Admin.Controllers
                         smp.EnableSsl = true;
                         smp.Send(mail);
                         await _userManager.AddToRoleAsync(finduser, "Student");
-                        TempData["Success"] = "Başarılı Bir Şekilde Eklenmiştir";
+                        TempData["Success"] = "Başarılı Bir Şekilde Öğrenci Eklenmiştir";
                         return RedirectToAction("AddStudent");
                     }
                     else
