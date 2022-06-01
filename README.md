@@ -21,3 +21,7 @@ These Layers:<br/>
 + X.PagedList <br/>
   + jQuery Codes<br/>
 + JavaScript Codes<br/>
+
+  <br/>
+  +MsSql Database Backup file is included.
+  +Connectionstring (server=(localdb)\\mssqllocaldb;initial catalog=Enoca;integrated security=true)
