@@ -1,0 +1,51 @@
+﻿@using EntityLayer.Concrate
+@model List<AppUser>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Öğrenci Listesi
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>İsim</th>
+                    <th>Soyisim</th>
+                    <th>Öğrenci Numarası</th>
+                    <th>Fakülte</th>
+                    <th>Bölüm</th>
+                    <th>Email</th>
+                    <th>Düzenle</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr style="font-size: 16px;"> 
+                        <td >@item.Students.Name</td>
+                        <td>@item.Students.Surname</td>
+                        <td>@item.Students.Student_number</td>
+                        <td>@item.Students.Faculty_Name</td>
+                        <td>@item.Students.Section_name</td>
+                        <td>@item.Email</td>
+                        <td><a href="/Admin/Student/StudentUpdate/@item.Id/" class="btn btn-success">Düzenle</a></td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

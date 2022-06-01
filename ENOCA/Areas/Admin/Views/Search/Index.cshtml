@@ -1,0 +1,132 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<body onload="myFunction()">
+    <h5>Öğrencileri Listele Ve Ara</h5>
+    <br />
+    <button type="button" id="btngetlist" class="btn btn-primary">Öğrenci Listesi</button>
+    <br />
+    <br />
+    <input type="text" id="StudentId" placeholder="Öğrenci Id" class="form-control" />
+    <button type="button" id="btngetbyıd" class="btn btn-primary">Öğrenci Getir (Id değerine göre)</button>
+    <button type="button" id="btnupdatebyıd" class="btn btn-primary">Öğrenciyi Güncelle</button>
+    (Güncelleme için önce öğrenciyi getirmelisiniz.)
+    <br />
+    <br />
+    <div id="studentlist">
+    </div>
+
+    <div id="studentget">
+    </div>
+    <br />
+    <br />
+    <br />
+
+    <input type="hidden" id="Idvalue" class="form-control" placeholder="Güncellenecek" />
+    <input type="hidden" id="IdvalueUser" class="form-control" placeholder="Güncellenecek" />
+    <label for="WriterName">Adı</label>
+    <input type="text" id="Name" class="form-control" placeholder="Güncellenecek İsim" />
+    <label for="WriterMail">Soyadı</label>
+    <input type="text" id="Surname" class="form-control" placeholder="Güncellenecek Soyad" />
+    <label for="WriterPassword mb-2">Öğrenci Numarası</label>
+    <input type="text" id="Student_number" class="form-control" placeholder="Güncellenecek Numara" />
+    <label for="WriterPassword mb-2">Fakülte</label>
+    <input type="text" id="Faculty_Name" class="form-control" placeholder="Güncellenecek Fakülte" />
+    <label for="WriterPassword mb-2">Bölüm</label>
+    <input type="text" id="Section_name" class="form-control" placeholder="Güncellenecek Bölüm" />
+
+</body>
+
+
+
+@section scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+
+    <script>
+        $("#btngetlist").click(function() {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/Admin/Search/StudentList/",
+                success: function(func) {
+                    let w = jQuery.parseJSON(func)
+                    let tablehtml = "<table class=table table-bordered> <tr> <th>Öğrenci ID</th><th>Öğrenci Adı</th><th>Öğrenci Soyadı</th><th>Öğrenci Numarası</th><th>Fakülte</th><th>Bölüm</th> </tr>";
+                    $.each(w, (index, value) => {
+                        tablehtml += `<tr><td>${value.Id}</td><td>${value.Name}</td><td>${value.Surname}</td><td>${value.Student_number}</td><td>${value.Faculty_Name}</td><td>${value.Section_name}</td></tr>`
+                    });
+                    tablehtml += "</table>";
+                    $("#studentlist").html(tablehtml);
+                }
+            });
+        });
+
+        $("#btngetbyıd").click(x => {
+            let id = $("#StudentId").val();
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/Admin/Search/StudentByID/",
+                data: { Id: id },
+                success: function(func) {
+                    let w = jQuery.parseJSON(func)
+                    let getvalue = `<table class=table table-bordered> <tr> <th>Öğrenci ID</th><th>Öğrenci Adı</th><th>Öğrenci Soyadı</th><th>Öğrenci Numarası</th><th>Fakülte</th><th>Bölüm</th> </tr><tr><td>${w.Id}</td><td>${w.Name}</td><td>${w.Surname}</td><td>${w.Student_number}</td><td>${w.Faculty_Name}</td><td>${w.Section_name}</td></tr></table>`;
+                    $("#studentget").html(getvalue);
+
+
+
+                    document.getElementById("Name").value = w.Name;
+                    document.getElementById("IdvalueUser").value = w.UserID;
+                    document.getElementById("Idvalue").value = w.Id;
+                    document.getElementById("Surname").value = w.Surname;
+                    document.getElementById("Student_number").value = w.Student_number;
+                    document.getElementById("Faculty_Name").value = w.Faculty_Name;
+                    document.getElementById("Section_name").value = w.Section_name;
+                    document.getElementById('btnupdatebyıd').disabled = false;
+                }
+            });
+        });
+        $("#btnupdatebyıd").click(function() {
+
+            let Student = {
+                Name: document.getElementById("Name").value,
+                Id: document.getElementById("Idvalue").value,
+                Surname: document.getElementById("Surname").value,
+                Student_number: document.getElementById("Student_number").value,
+                Faculty_Name: document.getElementById("Faculty_Name").value,
+                Section_name: document.getElementById("Section_name").value,
+                UserID: document.getElementById("IdvalueUser").value
+            };
+
+            $.ajax({
+                type: "post",
+                url: "/Admin/Search/StudentUpdate/",
+                data: Student,
+                success: function(response) {
+                    if (response.result == true) {
+                        alert("Güncelleme Başarılı");
+                    }
+                    else {
+                        alert(response.error);
+                    }
+                }
+            });
+        });
+        function myFunction() {
+            document.getElementById('btnupdatebyıd').disabled = true;
+        }
+
+
+
+    </script>
+
+    }
+
+
