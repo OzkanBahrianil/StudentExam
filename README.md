@@ -1,7 +1,6 @@
 # Project with Student and User Table for Exam
 In development
 <br/>
-Last Update 15.05.2022 /
 
 <small> 
 Using .NET CORE MVC 5.0 And 4-layer Architecture.<br/><br/>
