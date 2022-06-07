@@ -180,11 +180,11 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Students.Name</td>
-                        <td>@item.Students.Surname</td>
-                        <td>@item.Students.Student_number</td>
-                        <td>@item.Students.Faculty_Name</td>
-                        <td>@item.Students.Section_name</td>
+                        <td>@item.Students.studentName</td>
+                        <td>@item.Students.studentSurname</td>
+                        <td>@item.Students.studentNumber</td>
+                        <td>@item.Students.studentFacultyName</td>
+                        <td>@item.Students.studentDepartment</td>
                         <td>@item.Email</td>
 
                         @await Component.InvokeAsync("AssignRolellist", new { id = item.Id })

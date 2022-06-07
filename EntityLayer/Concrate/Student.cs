@@ -9,12 +9,12 @@ namespace EntityLayer.Concrate
     public class Student
     {
         
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Student_number { get; set; }
-        public string Faculty_Name { get; set; }
-        public string Section_name { get; set; }
+        public int studentId { get; set; }
+        public string studentName { get; set; }
+        public string studentSurname { get; set; }
+        public string studentNumber { get; set; }
+        public string studentFacultyName { get; set; }
+        public string studentDepartment { get; set; }
         public int UserID { get; set; }
         public AppUser User { get; set; }
     }

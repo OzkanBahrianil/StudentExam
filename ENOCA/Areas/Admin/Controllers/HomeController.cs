@@ -52,39 +52,39 @@ namespace ENOCA.Areas.Admin.Controllers
             ViewBag.psize = PageSize;
             if (!String.IsNullOrEmpty(SearchString))
             {
-                var valuesSearch = aum.GetByFilterWithStudentSearch(x => x.Students.Name != null, SearchString);
+                var valuesSearch = aum.GetByFilterWithStudentSearch(x => x.Students.studentName != null, SearchString);
 
                 switch (sortOrder)
                 {
                     case "Name":
-                        valuesSearch = valuesSearch.OrderBy(x => x.Students.Name).ToList();
+                        valuesSearch = valuesSearch.OrderBy(x => x.Students.studentName).ToList();
                         break;
                     case "NameDesc":
-                        valuesSearch = valuesSearch.OrderByDescending(x => x.Students.Name).ToList();
+                        valuesSearch = valuesSearch.OrderByDescending(x => x.Students.studentName).ToList();
                         break;
                     case "Surname":
-                        valuesSearch = valuesSearch.OrderBy(s => s.Students.Surname).ToList();
+                        valuesSearch = valuesSearch.OrderBy(s => s.Students.studentSurname).ToList();
                         break;
                     case "SurnameDesc":
-                        valuesSearch = valuesSearch.OrderByDescending(s => s.Students.Surname).ToList();
+                        valuesSearch = valuesSearch.OrderByDescending(s => s.Students.studentSurname).ToList();
                         break;
                     case "Number":
-                        valuesSearch = valuesSearch.OrderBy(s => s.Students.Student_number).ToList();
+                        valuesSearch = valuesSearch.OrderBy(s => s.Students.studentNumber).ToList();
                         break;
                     case "NumberDesc":
-                        valuesSearch = valuesSearch.OrderByDescending(s => s.Students.Student_number).ToList();
+                        valuesSearch = valuesSearch.OrderByDescending(s => s.Students.studentNumber).ToList();
                         break;
                     case "Faculty":
-                        valuesSearch = valuesSearch.OrderBy(s => s.Students.Faculty_Name).ToList();
+                        valuesSearch = valuesSearch.OrderBy(s => s.Students.studentFacultyName).ToList();
                         break;
                     case "FacultyDesc":
-                        valuesSearch = valuesSearch.OrderByDescending(s => s.Students.Faculty_Name).ToList();
+                        valuesSearch = valuesSearch.OrderByDescending(s => s.Students.studentFacultyName).ToList();
                         break;
                     case "Section":
-                        valuesSearch = valuesSearch.OrderBy(s => s.Students.Section_name).ToList();
+                        valuesSearch = valuesSearch.OrderBy(s => s.Students.studentDepartment).ToList();
                         break;
                     case "SectionDesc":
-                        valuesSearch = valuesSearch.OrderByDescending(s => s.Students.Section_name).ToList();
+                        valuesSearch = valuesSearch.OrderByDescending(s => s.Students.studentDepartment).ToList();
                         break;
                     case "Email":
                         valuesSearch = valuesSearch.OrderBy(s => s.Email).ToList();
@@ -102,38 +102,38 @@ namespace ENOCA.Areas.Admin.Controllers
             }
             else
             {
-                var values = aum.GetByFilterWithStudent(x => x.Students.Name != null);
+                var values = aum.GetByFilterWithStudent(x => x.Students.studentName != null);
                 switch (sortOrder)
                 {
                     case "Name":
-                        values = values.OrderBy(x => x.Students.Name).ToList();
+                        values = values.OrderBy(x => x.Students.studentName).ToList();
                         break;
                     case "NameDesc":
-                        values = values.OrderByDescending(x => x.Students.Name).ToList();
+                        values = values.OrderByDescending(x => x.Students.studentName).ToList();
                         break;
                     case "Surname":
-                        values = values.OrderBy(s => s.Students.Surname).ToList();
+                        values = values.OrderBy(s => s.Students.studentSurname).ToList();
                         break;
                     case "SurnameDesc":
-                        values = values.OrderByDescending(s => s.Students.Surname).ToList();
+                        values = values.OrderByDescending(s => s.Students.studentSurname).ToList();
                         break;
                     case "Number":
-                        values = values.OrderBy(s => s.Students.Student_number).ToList();
+                        values = values.OrderBy(s => s.Students.studentNumber).ToList();
                         break;
                     case "NumberDesc":
-                        values = values.OrderByDescending(s => s.Students.Student_number).ToList();
+                        values = values.OrderByDescending(s => s.Students.studentNumber).ToList();
                         break;
                     case "Faculty":
-                        values = values.OrderBy(s => s.Students.Faculty_Name).ToList();
+                        values = values.OrderBy(s => s.Students.studentFacultyName).ToList();
                         break;
                     case "FacultyDesc":
-                        values = values.OrderByDescending(s => s.Students.Faculty_Name).ToList();
+                        values = values.OrderByDescending(s => s.Students.studentFacultyName).ToList();
                         break;
                     case "Section":
-                        values = values.OrderBy(s => s.Students.Section_name).ToList();
+                        values = values.OrderBy(s => s.Students.studentDepartment).ToList();
                         break;
                     case "SectionDesc":
-                        values = values.OrderByDescending(s => s.Students.Section_name).ToList();
+                        values = values.OrderByDescending(s => s.Students.studentDepartment).ToList();
                         break;
                     case "Email":
                         values = values.OrderBy(s => s.Email).ToList();

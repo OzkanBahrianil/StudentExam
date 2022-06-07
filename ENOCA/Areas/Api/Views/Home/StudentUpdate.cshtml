@@ -1,0 +1,62 @@
+﻿@using ENOCA.Areas.Admin.Models
+@model UserUpdateViewModel
+@{
+    ViewData["Title"] = "StudentUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<br />
+<h4 style="text-align:center;">Öğrenci Düzenle</h4>
+<br />
+
+@using (Html.BeginForm("StudentUpdate", "Home", FormMethod.Post))
+{
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="WriterName">Adı</label>
+            @Html.HiddenFor(x=>x.StudentId)
+            @Html.HiddenFor(x=>x.UserId)
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+        </div>@Html.AntiForgeryToken()
+        <div class="col-md-6 mb-3">
+            <label for="WriterMail">Soyadı</label>
+            @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+            <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="WriterPassword mb-2">Email</label>
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" , @type = "email"})
+            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="WriterPassword mb-2">Öğrenci Numarası</label>
+            @Html.TextBoxFor(x => x.Student_number, new { @class = "form-control" })
+            <span asp-validation-for="@Model.Student_number" class="text-danger"></span>
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="WriterPassword mb-2">Fakülte</label>
+            @Html.TextBoxFor(x => x.Faculty_Name, new { @class = "form-control" })
+            <span asp-validation-for="@Model.Faculty_Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="WriterPassword mb-2">Bölüm</label>
+            @Html.TextBoxFor(x => x.Section_name, new { @class = "form-control" })
+            <span asp-validation-for="@Model.Section_name" class="text-danger"></span>
+        </div>
+
+    </div>
+    <button type="submit" id="submit" class="btn btn-primary submit mb-4">Güncelle</button>
+    <div class=" text-danger" asp-validation-summary="All">
+    </div>
+}

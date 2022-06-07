@@ -8,7 +8,6 @@
 }
 
 
-
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
@@ -39,13 +38,15 @@
                         <td>@item.Students.studentFacultyName</td>
                         <td>@item.Students.studentDepartment</td>
                         <td>@item.Email</td>
-                        <td><a href="/Admin/Student/StudentUpdate/@item.Id/" class="btn btn-success">Düzenle</a></td>
+                        <td><a href="/Api/Home/StudentUpdate/@item.Id/" class="btn btn-success">Düzenle</a></td>
 
                     </tr>
                 }
             </tbody>
         </table>
-    </div>
+     
+    </div>  
+    <a href="/Api/Home/AddStudent/" class="btn btn-primary">Yeni Öğrenci Ekle</a>
 </div>
 
 

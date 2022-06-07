@@ -51,7 +51,7 @@ namespace ENOCA.Areas.Admin.Controllers
             var finduser = await _userManager.FindByIdAsync(w.UserID.ToString());
             var checkusername = finduser.UserName;
 
-            finduser.UserName = w.Student_number;
+            finduser.UserName = w.studentNumber;
 
 
 
@@ -60,14 +60,14 @@ namespace ENOCA.Areas.Admin.Controllers
             if (resultasyc.Succeeded)
             {
 
-                if (checkusername != w.Student_number)
+                if (checkusername != w.studentNumber)
                 {
                     MailMessage mail = new MailMessage();
                     mail.IsBodyHtml = true;
                     mail.To.Add(finduser.Email);
                     mail.From = new MailAddress("healthprojectblog@gmail.com", "Güncelleme İşlemi", Encoding.UTF8);
                     mail.Subject = "Güncelleme İşlemi tamamlandı Kullanıcı Adı";
-                    mail.Body = $"<p>Kullanıcı Adınız: {w.Student_number} olarak güncellenmiştir.</p>";
+                    mail.Body = $"<p>Kullanıcı Adınız: {w.studentNumber} olarak güncellenmiştir.</p>";
                     mail.IsBodyHtml = true;
                     SmtpClient smp = new SmtpClient();
                     smp.Credentials = new NetworkCredential("healthprojectblog@gmail.com", "11051998Fb.");

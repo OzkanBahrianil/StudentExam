@@ -20,7 +20,7 @@ namespace BusinessLayer.Concrete
 
         public Student GetByIDT(int id)
         {
-            return _studentDal.Get(x => x.Id == id);
+            return _studentDal.Get(x => x.studentId == id);
         }
 
         public List<Student> GetListT()
@@ -30,11 +30,11 @@ namespace BusinessLayer.Concrete
         public List<Student> Search(string key)
         {
             key = key.ToLower();
-            return _studentDal.List().Where(p => p.Name.ToLower().Contains(key)
-            || p.Faculty_Name.ToString().ToLower().Contains(key)
-            || p.Student_number.ToString().ToLower().Contains(key)
-            || p.Section_name.ToString().ToLower().Contains(key)
-            || p.Surname.ToString().ToLower().Contains(key)).ToList();
+            return _studentDal.List().Where(p => p.studentName.ToLower().Contains(key)
+            || p.studentFacultyName.ToString().ToLower().Contains(key)
+            || p.studentNumber.ToString().ToLower().Contains(key)
+            || p.studentDepartment.ToString().ToLower().Contains(key)
+            || p.studentSurname.ToString().ToLower().Contains(key)).ToList();
 
         }
 

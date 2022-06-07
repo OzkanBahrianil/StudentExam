@@ -63,10 +63,10 @@ namespace BusinessLayer.Concrete
             key = key.ToLower();
             var values = _appUserDal.GetByFilterWithSt(filter);
 
-            var result = values.Where(p => p.Students.Name.ToLower().Contains(key)
-              || p.Students.Section_name.ToString().ToLower().Contains(key)
-              || p.Students.Surname.ToString().ToLower().Contains(key)
-              || p.Students.Faculty_Name.ToString().ToLower().Contains(key)).ToList();
+            var result = values.Where(p => p.Students.studentName.ToLower().Contains(key)
+              || p.Students.studentDepartment.ToString().ToLower().Contains(key)
+              || p.Students.studentSurname.ToString().ToLower().Contains(key)
+              || p.Students.studentFacultyName.ToString().ToLower().Contains(key)).ToList();
             return result;
         }
 

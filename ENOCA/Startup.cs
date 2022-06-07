@@ -95,11 +95,12 @@ namespace ENOCA
             app.UseStatusCodePagesWithReExecute("/Error/Error1", "?code={0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseAuthentication();
+      
             app.UseSession();
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
+    
 
             app.UseEndpoints(endpoints =>
             {

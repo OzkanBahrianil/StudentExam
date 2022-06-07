@@ -1,11 +1,16 @@
 ﻿using ENOCA.Models;
 using EntityLayer.Concrate;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,7 +45,16 @@ namespace ENOCA.Controllers
                     (p.username, p.password, p.RememberMe, true);
                 if (result.Succeeded)
                 {
+                    var httpClient = new HttpClient();
+                    var jsonStudents = JsonConvert.SerializeObject(p);
+                    StringContent stringContent = new StringContent(jsonStudents, Encoding.UTF8, "application/json");
+                   var success = await httpClient.PostAsync("https://localhost:44324/api/Values/getToken", stringContent);
+                    var token = await success.Content.ReadAsStringAsync();
+                    var values = JsonConvert.DeserializeObject<test>(token);
+                    HttpContext.Session.SetString("Token", values.token);
                     return RedirectToAction("Index", "Home");
+
+
                 }
                 else
                 {

@@ -59,7 +59,7 @@
                     let w = jQuery.parseJSON(func)
                     let tablehtml = "<table class=table table-bordered> <tr> <th>Öğrenci ID</th><th>Öğrenci Adı</th><th>Öğrenci Soyadı</th><th>Öğrenci Numarası</th><th>Fakülte</th><th>Bölüm</th> </tr>";
                     $.each(w, (index, value) => {
-                        tablehtml += `<tr><td>${value.Id}</td><td>${value.Name}</td><td>${value.Surname}</td><td>${value.Student_number}</td><td>${value.Faculty_Name}</td><td>${value.Section_name}</td></tr>`
+                        tablehtml += `<tr><td>${value.studentId}</td><td>${value.studentName}</td><td>${value.studentSurname}</td><td>${value.studentNumber}</td><td>${value.studentFacultyName}</td><td>${value.studentDepartment}</td></tr>`
                     });
                     tablehtml += "</table>";
                     $("#studentlist").html(tablehtml);
@@ -77,18 +77,18 @@
                 data: { Id: id },
                 success: function(func) {
                     let w = jQuery.parseJSON(func)
-                    let getvalue = `<table class=table table-bordered> <tr> <th>Öğrenci ID</th><th>Öğrenci Adı</th><th>Öğrenci Soyadı</th><th>Öğrenci Numarası</th><th>Fakülte</th><th>Bölüm</th> </tr><tr><td>${w.Id}</td><td>${w.Name}</td><td>${w.Surname}</td><td>${w.Student_number}</td><td>${w.Faculty_Name}</td><td>${w.Section_name}</td></tr></table>`;
+                    let getvalue = `<table class=table table-bordered> <tr> <th>Öğrenci ID</th><th>Öğrenci Adı</th><th>Öğrenci Soyadı</th><th>Öğrenci Numarası</th><th>Fakülte</th><th>Bölüm</th> </tr><tr><td>${w.studentId}</td><td>${w.studentName}</td><td>${w.studentSurname}</td><td>${w.studentNumber}</td><td>${w.studentFacultyName}</td><td>${w.studentDepartment}</td></tr></table>`;
                     $("#studentget").html(getvalue);
 
 
 
-                    document.getElementById("Name").value = w.Name;
+                    document.getElementById("Name").value = w.studentName;
                     document.getElementById("IdvalueUser").value = w.UserID;
-                    document.getElementById("Idvalue").value = w.Id;
-                    document.getElementById("Surname").value = w.Surname;
-                    document.getElementById("Student_number").value = w.Student_number;
-                    document.getElementById("Faculty_Name").value = w.Faculty_Name;
-                    document.getElementById("Section_name").value = w.Section_name;
+                    document.getElementById("Idvalue").value = w.studentId;
+                    document.getElementById("Surname").value = w.studentSurname;
+                    document.getElementById("Student_number").value = w.studentNumber;
+                    document.getElementById("Faculty_Name").value = w.studentFacultyName;
+                    document.getElementById("Section_name").value = w.studentDepartment;
                     document.getElementById('btnupdatebyıd').disabled = false;
                 }
             });
@@ -96,12 +96,12 @@
         $("#btnupdatebyıd").click(function() {
 
             let Student = {
-                Name: document.getElementById("Name").value,
-                Id: document.getElementById("Idvalue").value,
-                Surname: document.getElementById("Surname").value,
-                Student_number: document.getElementById("Student_number").value,
-                Faculty_Name: document.getElementById("Faculty_Name").value,
-                Section_name: document.getElementById("Section_name").value,
+                studentName: document.getElementById("Name").value,
+                studentId: document.getElementById("Idvalue").value,
+                studentSurname: document.getElementById("Surname").value,
+                studentNumber: document.getElementById("Student_number").value,
+                studentFacultyName: document.getElementById("Faculty_Name").value,
+                studentDepartment: document.getElementById("Section_name").value,
                 UserID: document.getElementById("IdvalueUser").value
             };
 

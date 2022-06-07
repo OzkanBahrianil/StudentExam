@@ -32,7 +32,7 @@ namespace ENOCA.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            var values = aum.GetByFilterWithStudent(x => x.Students.Name != null);
+            var values = aum.GetByFilterWithStudent(x => x.Students.studentName != null);
 
             return View(values);
         }
@@ -40,17 +40,17 @@ namespace ENOCA.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult StudentUpdate(int id)
         {
-            var values = aum.GetByFilterWithStudent(x => x.Students.Name != null && x.Id == id).FirstOrDefault();
+            var values = aum.GetByFilterWithStudent(x => x.Students.studentName != null && x.Id == id).FirstOrDefault();
 
             UserUpdateViewModel userUpdate = new UserUpdateViewModel()
             {
-                Section_name = values.Students.Section_name,
-                Faculty_Name = values.Students.Faculty_Name,
-                Student_number = values.Students.Student_number,
-                Surname = values.Students.Surname,
+                Section_name = values.Students.studentDepartment,
+                Faculty_Name = values.Students.studentFacultyName,
+                Student_number = values.Students.studentNumber,
+                Surname = values.Students.studentSurname,
                 UserId = values.Id,
-                Name = values.Students.Name,
-                StudentId = values.Students.Id,
+                Name = values.Students.studentName,
+                StudentId = values.Students.studentId,
                 Email = values.Email
 
             };
@@ -73,11 +73,11 @@ namespace ENOCA.Areas.Admin.Controllers
                 if (resultasyc.Succeeded)
                 {
                     var student = stm.GetByIDT(p.StudentId);
-                    student.Section_name = p.Section_name;
-                    student.Faculty_Name = p.Faculty_Name;
-                    student.Student_number = p.Student_number;
-                    student.Surname = p.Surname;
-                    student.Name = p.Name;
+                    student.studentDepartment = p.Section_name;
+                    student.studentFacultyName = p.Faculty_Name;
+                    student.studentNumber = p.Student_number;
+                    student.studentSurname = p.Surname;
+                    student.studentName = p.Name;
                     if (checkusername != p.Student_number)
                     {
                         MailMessage mail = new MailMessage();
@@ -148,12 +148,12 @@ namespace ENOCA.Areas.Admin.Controllers
                 {
                     var finduser = await _userManager.FindByEmailAsync(p.Email);
                     Student student = new Student();
-                    student.Faculty_Name = p.Faculty_Name;
-                    student.Student_number = p.Student_number;
-                    student.Surname = p.Surname;
+                    student.studentFacultyName = p.Faculty_Name;
+                    student.studentNumber = p.Student_number;
+                    student.studentSurname = p.Surname;
                     student.UserID = finduser.Id;
-                    student.Name = p.Name;
-                    student.Section_name = p.Section_name;
+                    student.studentName = p.Name;
+                    student.studentDepartment = p.Section_name;
                     StudentValidationRules sv = new StudentValidationRules();
                     ValidationResult validateResult = sv.Validate(student);
                     if (validateResult.IsValid)
