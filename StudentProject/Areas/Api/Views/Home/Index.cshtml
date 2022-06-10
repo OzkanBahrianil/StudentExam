@@ -1,0 +1,56 @@
+﻿@using EntityLayer.Concrate
+@model List<AppUser>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Öğrenci Listesi
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>İsim</th>
+                    <th>Soyisim</th>
+                    <th>Öğrenci Numarası</th>
+                    <th>Fakülte</th>
+                    <th>Bölüm</th>
+                    <th>Email</th>
+                    <th>Düzenle</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model !=null)
+                {
+                    
+            
+                @foreach (var item in Model)
+                {
+                    <tr style="font-size: 16px;"> 
+                        <td >@item.Students.studentName</td>
+                        <td>@item.Students.studentSurname</td>
+                        <td>@item.Students.studentNumber</td>
+                        <td>@item.Students.studentFacultyName</td>
+                        <td>@item.Students.studentDepartment</td>
+                        <td>@item.Email</td>
+                        <td><a href="/Api/Home/StudentUpdate/@item.Id/" class="btn btn-success">Düzenle</a></td>
+
+                    </tr>
+                }    }
+            </tbody>
+        </table>
+     
+    </div>  
+    <a href="/Api/Home/AddStudent/" class="btn btn-primary">Yeni Öğrenci Ekle</a>
+</div>
+
+
