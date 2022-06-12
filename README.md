@@ -20,5 +20,6 @@ These Layers:<br/>
 + X.PagedList <br/>
   + jQuery And Json Codes<br/>
 + JavaScript Codes<br/>
-
++ Asp.net Core Api<br/>
+  + Custom Log<br/>
 
